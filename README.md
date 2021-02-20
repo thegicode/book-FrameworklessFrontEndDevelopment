@@ -1,2 +1,6 @@
 # book-FrameworklessFrontEndDevelopment
-study
+
+
+https://www.frameworklessmovement.org
+
+info@frameworklessmovement.org
