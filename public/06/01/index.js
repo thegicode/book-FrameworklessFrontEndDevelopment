@@ -9,5 +9,5 @@ const router = createRouter()
 router
     .addRoute('#/', pages.home)
     .addRoute('#/list', pages.list)
-    .setNotFound(pages.setNotFound)
+    .setNotFound(pages.notFound)
     .start();

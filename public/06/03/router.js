@@ -1,3 +1,6 @@
+const ROUTE_PARAMETER_REGEXP = /:(\w+)/g 
+const URL_FRAGEMENT_REGEXP = `([^\\/]+)`
+
 export default () => {
     const routes = []
     let notFound = () => {}
@@ -6,10 +9,8 @@ export default () => {
 
     const checkRoutes = () => {
         const currentRoute = routes.find(route => {
-            return route.fragment === window.location.hash
+            return window.location.hash === route.fragment
         })
-
-        console.log(currentRoute)
 
         if(!currentRoute){
             notFound()
@@ -20,7 +21,21 @@ export default () => {
     }
 
     router.addRoute = (fragment, component) => {
+
+        const params = []
+
+        const parsedFrament = fragment
+            .replace(
+                ROUTE_PARAMETER_REGEXP,
+                (match, paramName) => {
+                    params.push(paramName)
+                    return URL_FRAGEMENT_REGEXP
+                }
+            )
+            .replace(/\//g, `\\/`)
+
         routes.push({
+            testRegExp: new RegExp(`^${parsedFrament}$`),
             fragment,
             component
         })
@@ -33,6 +48,10 @@ export default () => {
         return router
     }
 
+    router.navigate = fragment => {
+        window.location.hash = fragment
+    }
+
     router.start = () => {
         window
             .addEventListener('hashchange', checkRoutes)
@@ -42,9 +61,11 @@ export default () => {
         }
 
         checkRoutes()
+
+        // console.log('routes', routes)
     }
 
-    // console.log('routes', routes)
+    // console.log('router', router)
 
     return router
 
