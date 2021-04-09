@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>06-01</title>
+    <title>06-04</title>
     <style>
         a{
             display: block;
@@ -13,9 +13,11 @@
 </head>
 <body>
     <header>
-        <a href="#">Go To Index</a>
-        <a href="#/list">Go To List</a>
-        <a href="#/dummy">Dummy Page</a>
+        <a data-navigation href="/"> Go To Index </a>
+        <a data-navigation href="/list"> Go To List </a>
+        <a data-navigation href="/list/1"> Go To Detail With Id 1 </a>
+        <a data-navigation href="/list/1/2"> Go To Detail With Id 1 and AnotherId 2 </a>
+        <a data-navigation href="/dummy"> Dummy Page </a>
     </header>
     <hr>
     <main>
